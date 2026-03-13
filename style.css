@@ -82,10 +82,11 @@ body {
    ========================================= */
 .screen-content {
     flex: 1; /* 自动撑开占据剩余空间 */
-    padding: 10px 20px;
+    padding: 20px 25px; /* 增加左右内边距，使图标向内靠拢一点点 */
     display: flex;
     flex-direction: column;
-    gap: 15px; /* 每个大行之间的间距 */
+    justify-content: space-evenly; /* 关键：使行与行之间在垂直方向上均匀分布 */
+    gap: 30px; /* 增加行与行之间的基础垂直间距 */
 }
 
 /* 音乐播放挂件 */
@@ -148,8 +149,8 @@ body {
 .grid-middle {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 左右等分 */
-    gap: 15px;
-    height: 160px;
+    gap: 25px; /* 增加大组件与右侧图标组的间距 */
+    height: auto; /* 让高度根据内容自适应 */
 }
 
 /* 大组件样式 */
@@ -170,7 +171,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 15px;
+    gap: 20px; /* 增加小APP图标之间的水平和垂直间距 */
 }
 
 /* 图标基础样式 */
@@ -209,7 +210,7 @@ body {
 .grid-bottom {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    gap: 20px; /* 增加底部一行图标之间的间距 */
 }
 
 /* =========================================
