@@ -36,52 +36,66 @@
         <!-- 主屏幕内容区：放置各种组件和图标 -->
         <div class="screen-content">
             
-            <!-- 第一行：音乐播放挂件 -->
-            <div class="widget-music">
+            <!-- 音乐播放控制栏 (Glassmorphism风格) -->
+            <div class="widget-music glass-card">
                 <div class="music-info">
-                    <span class="song-name">甜心轰炸机</span>
-                    <span class="artist">- 虚拟乐团</span>
+                    <span class="song-name">Now Playing</span>
+                    <span class="artist">- iOS Style</span>
                 </div>
-                <div class="music-controls">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
+                <div class="music-controls-ios">
+                    <button class="icon-btn">⏮</button>
+                    <button class="icon-btn play-pause">⏯</button>
+                    <button class="icon-btn">⏭</button>
+                </div>
+            </div>
+
+            <!-- 桌面应用网格 (iOS 布局) -->
+            <div class="app-grid-ios">
+                <!-- 第一行：居中一个“世界书”App图标 -->
+                <div class="grid-row row-center">
+                    <div class="app-item">
+                        <div class="app-icon-ios glass-icon">📖</div>
+                        <span class="app-label">世界书</span>
                     </div>
-                    <button class="add-btn">+</button>
                 </div>
-            </div>
 
-            <!-- 中间部分：左侧大组件 + 右侧四个小 APP 图标 -->
-            <div class="grid-middle">
-                <!-- 2x2 大组件 (通常用来放图片或者天气) -->
-                <div class="big-widget">
-                    <img src="https://api.dujin.org/bing/m.php" alt="随心看组件" class="widget-img">
+                <!-- 第二行：靠右一个“预设”App图标 -->
+                <div class="grid-row row-right">
+                    <div class="app-item">
+                        <div class="app-icon-ios glass-icon">⚙️</div>
+                        <span class="app-label">预设</span>
+                    </div>
                 </div>
-                
-                <!-- 右侧的四个小APP图标 (2x2排列) -->
-                <div class="right-apps">
-                    <div class="app-item"><div class="app-icon purple">📷</div><span class="app-label">相册</span></div>
-                    <div class="app-item"><div class="app-icon pink">💌</div><span class="app-label">对话</span></div>
-                    <div class="app-item"><div class="app-icon blue">📅</div><span class="app-label">日程</span></div>
-                    <div class="app-item"><div class="app-icon yellow">🎨</div><span class="app-label">外观</span></div>
-                </div>
-            </div>
 
-            <!-- 下方行：横向排列的四个普通 APP 图标 -->
-            <div class="grid-bottom">
-                <div class="app-item"><div class="app-icon green">🍃</div><span class="app-label">健康</span></div>
-                <div class="app-item"><div class="app-icon orange">🍊</div><span class="app-label">商店</span></div>
-                <div class="app-item"><div class="app-icon blue-dark">🌊</div><span class="app-label">浏览器</span></div>
-                <div class="app-item"><div class="app-icon red">🎮</div><span class="app-label">游戏</span></div>
+                <!-- 第三行：从左至右依次排列“X”、“QQ”、“查手机”三个App图标 -->
+                <div class="grid-row row-left">
+                    <div class="app-item">
+                        <div class="app-icon-ios glass-icon">𝕏</div>
+                        <span class="app-label">X</span>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon-ios glass-icon">🐧</div>
+                        <span class="app-label">QQ</span>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon-ios glass-icon">🔍</div>
+                        <span class="app-label">查手机</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- 最下方固定底栏 (Dock)，就像手机底部的常用栏 -->
+        <!-- 底部固定栏 (Dock) -->
         <div class="dock-container">
-            <div class="dock">
-                <!-- 这里放置最常用的几个图标 -->
-                <div class="app-item"><div class="app-icon dock-icon phone">📞</div></div>
-                <div class="app-item"><div class="app-icon dock-icon chat">💬</div></div>
-                <div class="app-item"><div class="app-icon dock-icon setting">⚙️</div></div>
+            <div class="dock glass-dock">
+                <div class="app-item">
+                    <div class="app-icon-ios glass-icon">🔌</div>
+                    <span class="app-label">API</span>
+                </div>
+                <div class="app-item">
+                    <div class="app-icon-ios glass-icon">🏛</div>
+                    <span class="app-label">人物大厅</span>
+                </div>
             </div>
         </div>
     </div>

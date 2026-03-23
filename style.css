@@ -1,253 +1,221 @@
 /* =========================================
    全局样式重置
-   确保在不同手机浏览器上的显示效果一致
    ========================================= */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* 盒模型：让 padding 不撑大盒子 */
-    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    -webkit-tap-highlight-color: transparent; /* 去掉移动端点击时的蓝色高亮方框 */
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* 定义全局变量，方便以后一键修改颜色或圆角 */
 :root {
-    --round-radius: 22px; /* 统一的圆润角度 */
-    --text-color: white;
-    --bg-gradient: linear-gradient(180deg, #ffafbd 0%, #ffc3a0 100%); /* Y2K风格渐变背景 */
+    --ios-radius: 18px;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-blur: blur(20px);
+    --text-color: #ffffff;
 }
 
 body {
-    background: #f0f0f0;
-    overflow: hidden; /* 禁止整个页面滚动，模拟原生App的稳重感 */
+    background: #000;
+    overflow: hidden;
 }
 
-/* 手机总容器：占据整个屏幕 */
+/* 手机总容器 - 采用 iOS 壁纸风格渐变 */
 .phone-container {
     width: 100vw;
     height: 100vh;
-    background: var(--bg-gradient);
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background-size: cover;
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
 /* =========================================
-   1. 顶部状态栏样式
+   1. 顶部状态栏
    ========================================= */
 .status-bar {
     height: 44px;
-    padding: 0 20px;
+    padding: 0 25px;
     display: flex;
-    justify-content: space-between; /* 左右两端对齐 */
+    justify-content: space-between;
     align-items: center;
     color: white;
     font-size: 14px;
-    font-weight: bold;
-    z-index: 10;
+    font-weight: 600;
 }
 
 .status-icons {
     display: flex;
     align-items: center;
-    gap: 8px; /* 图标之间的间距 */
-}
-
-/* 用 CSS 简单绘制一个电池图标 */
-.battery {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .battery-body {
     width: 25px;
     height: 12px;
-    border: 1.5px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 3px;
     padding: 1px;
     position: relative;
 }
 
-/* 内部电量填充颜色 */
 .battery-fill {
     height: 100%;
     background: white;
     border-radius: 1px;
-    transition: width 0.3s; /* 电量变化时有平滑过渡效果 */
 }
 
 /* =========================================
-   2. 主屏幕内容区域布局
+   2. Glassmorphism 磨砂玻璃核心样式
    ========================================= */
-.screen-content {
-    flex: 1; /* 自动撑开占据剩余空间 */
-    padding: 10px 25px 30px 25px; /* 减小顶部内边距，增加底部余量，整体上移 */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 改为从顶部开始排列，手动控制间距 */
-    gap: 25px; /* 统一每一行的垂直间距 */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
-/* 音乐播放挂件 */
+.glass-icon {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+}
+
+/* =========================================
+   3. 主内容区域
+   ========================================= */
+.screen-content {
+    flex: 1;
+    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* 音乐控制栏 */
 .widget-music {
-    background: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
-    backdrop-filter: blur(10px); /* 玻璃拟态：毛玻璃模糊效果 */
-    border-radius: 18px;
-    padding: 12px 15px;
-    color: white;
+    border-radius: 24px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .music-info {
-    font-size: 14px;
-    margin-bottom: 8px;
+    text-align: center;
+}
+
+.song-name {
+    display: block;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .artist {
-    opacity: 0.7;
-    margin-left: 5px;
-    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
 }
 
-.music-controls {
+.music-controls-ios {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 40px;
 }
 
-/* 进度条样式 */
-.progress-bar {
-    flex: 1;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.progress-fill {
-    width: 40%;
-    height: 100%;
-    background: white;
-}
-
-/* 挂件上的小按钮 */
-.add-btn {
-    background: white;
+.icon-btn {
+    background: none;
     border: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    color: #ffafbd;
-    font-weight: bold;
-    font-size: 12px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
-/* =========================================
-   3. 图标和网格布局
-   ========================================= */
-
-/* 中间行：2列布局 */
-.grid-middle {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 左右等分 */
-    gap: 25px; /* 增加大组件与右侧图标组的间距 */
-    align-items: center; /* 垂直方向居中对齐 */
+.icon-btn:active {
+    transform: scale(0.9);
+    opacity: 0.6;
 }
 
-/* 大组件样式 - 强制正方形 */
-.big-widget {
-    background: white;
-    border-radius: var(--round-radius);
-    overflow: hidden; /* 确保图片不超出圆角边界 */
-    aspect-ratio: 1 / 1; /* 关键：保持 1:1 纵横比，确保是正方形 */
-    width: 100%; /* 宽度占满列宽 */
+.play-pause {
+    font-size: 32px;
 }
 
-.widget-img {
+/* iOS 应用网格布局 */
+.app-grid-ios {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.grid-row {
+    display: flex;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* 图片自适应撑满 */
 }
 
-/* 右侧四个小APP的网格布局 */
-.right-apps {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 15px 20px; /* 纵向间距略微调小，横向保持 20px，以适应正方形大块的高度 */
-}
+.row-center { justify-content: center; }
+.row-right { justify-content: flex-end; }
+.row-left { justify-content: flex-start; gap: 20px; }
 
-/* 图标基础样式 */
+/* 应用图标样式 */
 .app-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
 }
 
-/* 图标方格样式 */
-.app-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--round-radius);
+.app-icon-ios {
+    width: 65px;
+    height: 65px;
+    border-radius: 16px; /* iOS 图标圆角率 */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.1s; /* 点击时的微小反馈 */
-}
-
-/* 模拟点击效果 */
-.app-icon:active {
-    transform: scale(0.9);
 }
 
 .app-label {
     color: white;
-    font-size: 11px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3); /* 文字阴影防止在浅色背景下看不清 */
-}
-
-/* 底部行：4列布局 */
-.grid-bottom {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px; /* 增加底部一行图标之间的间距 */
+    font-size: 12px;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 /* =========================================
-   4. 图标颜色主题 (Y2K配色)
-   ========================================= */
-.purple { background: #e0c3fc; }
-.pink { background: #ffdee9; }
-.blue { background: #caf0f8; }
-.yellow { background: #fdfcf0; }
-.green { background: #c1fba4; }
-.orange { background: #ffdab9; }
-.blue-dark { background: #90e0ef; }
-.red { background: #ff9a9e; }
-
-/* =========================================
-   5. 底部 Dock 栏样式
+   4. Dock 底部固定栏
    ========================================= */
 .dock-container {
-    padding: 10px 20px 30px 20px; /* 底部预留 30px 模拟手机操作手势区 */
+    padding: 0 20px 40px 20px;
 }
 
-.dock {
-    height: 85px;
-    background: rgba(255, 255, 255, 0.4); /* 背景透明 */
-    backdrop-filter: blur(20px); /* 强力模糊效果 */
-    border-radius: 30px;
+.glass-dock {
+    height: 95px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start; /* 靠左排列 */
     align-items: center;
-    padding: 0 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框感 */
+    padding: 0 25px;
+    gap: 20px;
 }
 
-.dock-icon {
+.glass-dock .app-label {
+    display: none; /* Dock 栏通常不显示文字 */
+}
+
+.glass-dock .app-icon-ios {
     width: 60px;
     height: 60px;
-    background: white;
 }
