@@ -82,11 +82,11 @@ body {
    ========================================= */
 .screen-content {
     flex: 1; /* 自动撑开占据剩余空间 */
-    padding: 20px 25px; /* 增加左右内边距，使图标向内靠拢一点点 */
+    padding: 10px 25px 30px 25px; /* 减小顶部内边距，增加底部余量，整体上移 */
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly; /* 关键：使行与行之间在垂直方向上均匀分布 */
-    gap: 30px; /* 增加行与行之间的基础垂直间距 */
+    justify-content: flex-start; /* 改为从顶部开始排列，手动控制间距 */
+    gap: 25px; /* 统一每一行的垂直间距 */
 }
 
 /* 音乐播放挂件 */
@@ -150,14 +150,16 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 左右等分 */
     gap: 25px; /* 增加大组件与右侧图标组的间距 */
-    height: auto; /* 让高度根据内容自适应 */
+    align-items: center; /* 垂直方向居中对齐 */
 }
 
-/* 大组件样式 */
+/* 大组件样式 - 强制正方形 */
 .big-widget {
     background: white;
     border-radius: var(--round-radius);
     overflow: hidden; /* 确保图片不超出圆角边界 */
+    aspect-ratio: 1 / 1; /* 关键：保持 1:1 纵横比，确保是正方形 */
+    width: 100%; /* 宽度占满列宽 */
 }
 
 .widget-img {
@@ -171,7 +173,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 20px; /* 增加小APP图标之间的水平和垂直间距 */
+    gap: 15px 20px; /* 纵向间距略微调小，横向保持 20px，以适应正方形大块的高度 */
 }
 
 /* 图标基础样式 */
