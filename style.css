@@ -11,9 +11,9 @@
 
 :root {
     --ios-radius: 18px;
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --glass-blur: blur(20px);
+    --glass-bg: rgba(255, 255, 255, 0.15); /* 降低透明度增加磨砂感 */
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(30px); /* 增加模糊度 */
     --text-color: #ffffff;
 }
 
@@ -24,8 +24,9 @@ body {
 
 /* 手机总容器 - 采用 iOS 壁纸风格渐变 */
 .phone-container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    min-height: 800px; /* 移除 vh，使用 100% 并设置最小高度 */
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     background-size: cover;
     display: flex;
@@ -100,11 +101,13 @@ body {
 /* 音乐控制栏 */
 .widget-music {
     border-radius: 24px;
-    padding: 20px;
+    padding: 15px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    width: 85%; /* 缩短长度 */
+    margin: 0 auto; /* 居中 */
 }
 
 .music-info {
@@ -149,21 +152,19 @@ body {
     font-size: 32px;
 }
 
-/* iOS 应用网格布局 */
+/* iOS 应用网格布局 - 修复对齐 */
 .app-grid-ios {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 标准 iOS 4列布局 */
+    gap: 25px 15px;
+    justify-items: center;
+    padding-top: 10px;
 }
 
+/* 移除旧的行布局干扰 */
 .grid-row {
-    display: flex;
-    width: 100%;
+    display: contents; 
 }
-
-.row-center { justify-content: center; }
-.row-right { justify-content: flex-end; }
-.row-left { justify-content: flex-start; gap: 20px; }
 
 /* 应用图标样式 */
 .app-item {
@@ -174,13 +175,14 @@ body {
 }
 
 .app-icon-ios {
-    width: 65px;
-    height: 65px;
-    border-radius: 16px; /* iOS 图标圆角率 */
+    width: 60px;
+    height: 60px;
+    border-radius: 14px; /* iOS 图标圆角率 */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
+    aspect-ratio: 1 / 1; /* 确保是正方形 */
 }
 
 .app-label {
@@ -199,13 +201,13 @@ body {
 
 .glass-dock {
     height: 95px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    background: var(--glass-bg); /* 使用统一的背景色 */
+    backdrop-filter: var(--glass-blur); /* 使用统一的模糊度 */
+    -webkit-backdrop-filter: var(--glass-blur);
     border-radius: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--glass-border);
     display: flex;
-    justify-content: flex-start; /* 靠左排列 */
+    justify-content: center; /* 居中排列 */
     align-items: center;
     padding: 0 25px;
     gap: 20px;
